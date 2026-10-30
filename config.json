@@ -14,7 +14,8 @@
   "documentation": {
     "previewLength": 500,
     "fallbackPaths": [
-      "docs/llm.txt"
+      "docs/llms-full.txt",
+      "docs/llms.txt"
     ]
   }
 }

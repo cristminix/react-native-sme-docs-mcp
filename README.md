@@ -1,102 +1,100 @@
-# 🚀 Medusa.js Documentation MCP Server
+# 🚀 React Native SME Documentation MCP Server
 
-A powerful **Model Context Protocol (MCP) server** that gives your AI assistants instant access to **comprehensive Medusa.js v2 documentation** with smart search capabilities and real-time assistance for enhanced development workflow.
+A powerful **Model Context Protocol (MCP) server** that gives your AI assistants instant access to **comprehensive React Native SME documentation** with smart fuzzy search capabilities and fast retrieval for an enhanced mobile development workflow.
 
-> 📅 **Latest Documentation**: September 2025 | 📊 **Coverage**: 2,105+ sections | 📦 **Size**: 4.7MB
+> 📊 **Coverage**: 3,090+ sections | 📦 **Documentation Source**: Local `docs/llms-full.txt` (3.9MB)
+
+---
 
 ## ✨ Key Features
 
 | 🎯 Feature | 📝 Description | 🚀 Benefits |
 |------------|----------------|-------------|
-| **🔍 Smart Search** | Fuzzy search through 2,105+ documentation sections | Find answers even with partial or inexact queries |
-| **📖 Precise Retrieval** | Get exact sections by title or path | Access specific documentation instantly |
-| **📋 Complete Browsing** | List all available sections with filtering | Discover new features and capabilities |
-| **⚡ Lightning Fast** | TypeScript-powered with optimized performance | Instant responses, no delays |
-| **📦 Zero Setup** | Documentation included, no external dependencies | Works out-of-the-box |
-| **🔄 Real-time** | Always up-to-date Medusa v2 documentation | Latest features and best practices |
+| **🔍 Smart Search** | Fuzzy search through 3,090+ documentation sections powered by Fuse.js | Find solutions, components, hooks, and guides even with partial queries |
+| **📖 Precise Retrieval** | Retrieve exact sections by title or path identifier | Get targeted documentation without cluttering AI context |
+| **📋 Section Listing** | List available sections with optional category filtering | Explore topics, modules, and architecture guides |
+| **⚡ Fast & Lightweight** | TypeScript-powered running over stdio | Zero-lag responses for AI code assistants |
+| **📦 Zero External Dependency** | Bundled with local documentation | Operates completely offline without external API keys |
+
+---
 
 ## 📋 Prerequisites
 
 - **Node.js** 18+
-- **npm** or **yarn**
+- **Yarn** (v4) or **npm**
 - **AI Assistant** with MCP support:
-  - [Claude Code (CLI)](https://claude.ai/code) ✅ **Tested & Working**
-  - [Kilo Code](https://kilocode.ai/) ✅ **Tested & Working**
+  - [Claude Code (CLI)](https://claude.ai/code)
   - [Cursor](https://cursor.sh/)
   - [Windsurf](https://codeium.com/windsurf)
+  - [Antigravity / Gemini CLI](https://github.com/google)
   - Or any MCP-compatible client
 
-## 🛠 Installation
+---
 
-### 1. Clone and Setup
+## 🛠 Installation & Setup
+
+### 1. Clone and Install
 
 ```bash
 # Clone the repository
-git clone https://github.com/Alexcs24/Medusa.js-Documentation-MCP-Server
-cd Medusa.js-Documentation-MCP-Server
+git clone https://github.com/cristminix/react-native-sme-docs-mcp.git
+cd react-native-sme-docs-mcp
 
-# Install dependencies
-npm install
+# Install dependencies using Yarn
+yarn install
 
 # Build the TypeScript code
-npm run build
+yarn build
 ```
 
-### 2. Documentation Ready!
+### 2. Documentation
 
-✅ **No additional setup needed!** The repository includes comprehensive Medusa.js v2 documentation (4.7MB, September 2025) located at `./docs/medusa-docs.txt`.
+Documentation files are located in `./docs/`:
+- `docs/llms-full.txt` (default full documentation, ~3.9MB, 3,090+ sections)
+- `docs/llms.txt` (summary documentation)
 
-**Optional**: Use your own documentation file:
+**Optional**: Point to a custom documentation file using an environment variable:
 ```bash
-# Replace with your own documentation if needed
-export LLM_DOCS_PATH="/absolute/path/to/your/custom-docs.txt"
+export LLM_DOCS_PATH="/absolute/path/to/your/documentation.txt"
 ```
 
-### 3. Configure Your AI Assistant
+---
 
-#### 🟢 Claude Code CLI ✅ **Tested & Working**
+## ⚙️ Configuration for AI Assistants
 
-**Global Configuration** (recommended):
-```bash
-# Create or edit global config
-nano ~/.claude/claude_code_config.json
-```
+Replace `/absolute/path/to/react-native-sme-docs-mcp` with your actual project location.
 
-Add this configuration:
+### 🟢 Claude Code CLI
+
+Add to your `~/.claude/claude_code_config.json` or project-level `.claude/mcp.json`:
+
 ```json
 {
   "mcpServers": {
-    "medusa-docs": {
+    "react-native-sme-docs": {
       "command": "node",
-      "args": ["/absolute/path/to/Medusa.js-Documentation-MCP-Server/dist/index.js"],
+      "args": ["/absolute/path/to/react-native-sme-docs-mcp/dist/index.js"],
       "env": {
-        "LLM_DOCS_PATH": "/absolute/path/to/Medusa.js-Documentation-MCP-Server/docs/medusa-docs.txt"
+        "LLM_DOCS_PATH": "/absolute/path/to/react-native-sme-docs-mcp/docs/llms-full.txt"
       }
     }
   }
 }
 ```
 
-**Project-specific Configuration**:
-```bash
-# In your Medusa project root
-mkdir -p .claude
-cp claude_code_config.json .claude/mcp.json
-# Edit paths to be relative to your project
-```
-
-#### Cursor IDE
+### 🔷 Cursor IDE
 
 Add to your Cursor settings (`settings.json`):
+
 ```json
 {
   "mcp": {
     "mcpServers": {
-      "medusa-docs": {
+      "react-native-sme-docs": {
         "command": "node",
-        "args": ["/absolute/path/to/Medusa.js-Documentation-MCP-Server/dist/index.js"],
+        "args": ["/absolute/path/to/react-native-sme-docs-mcp/dist/index.js"],
         "env": {
-          "LLM_DOCS_PATH": "/absolute/path/to/docs/medusa-docs.txt"
+          "LLM_DOCS_PATH": "/absolute/path/to/react-native-sme-docs-mcp/docs/llms-full.txt"
         }
       }
     }
@@ -104,304 +102,171 @@ Add to your Cursor settings (`settings.json`):
 }
 ```
 
-#### Windsurf
+### 🌊 Windsurf
 
-Create or edit `windsurf-mcp-config.json`:
+Add to `~/.codeium/windsurf/mcp_config.json`:
+
 ```json
 {
   "mcpServers": {
-    "medusa-docs": {
+    "react-native-sme-docs": {
       "command": "node",
-      "args": ["/absolute/path/to/Medusa.js-Documentation-MCP-Server/dist/index.js"],
+      "args": ["/absolute/path/to/react-native-sme-docs-mcp/dist/index.js"],
       "env": {
-        "LLM_DOCS_PATH": "/absolute/path/to/docs/medusa-docs.txt"
+        "LLM_DOCS_PATH": "/absolute/path/to/react-native-sme-docs-mcp/docs/llms-full.txt"
       }
     }
   }
 }
 ```
 
-
-## 🎯 Usage & Natural Language Examples
-
-After configuration, restart your AI assistant and interact using **natural language**:
-
-### 🔍 **Smart Search Examples**
-```bash
-💬 "Search Medusa docs for payment providers"
-💬 "Find information about workflows in Medusa"
-💬 "Look up cart module documentation"
-💬 "How do I implement custom shipping methods?"
-💬 "Show me authentication examples"
-```
-
-### 📖 **Specific Section Retrieval**
-```bash
-💬 "Get the section about API routes"
-💬 "Show me the modules documentation"
-💬 "Retrieve workflow examples"
-💬 "I need the admin customization guide"
-💬 "Display the product catalog setup"
-```
-
-### 📋 **Browse Available Content**
-```bash
-💬 "List all available documentation sections"
-💬 "Show me categories in the docs"
-💬 "What documentation sections are available?"
-💬 "Browse workflow-related documentation"
-💬 "What payment integrations are documented?"
-```
-
-### 🌟 **Advanced Usage Patterns**
-```bash
-💬 "Compare different payment providers in Medusa"
-💬 "Walk me through setting up a complete e-commerce store"
-💬 "What's the difference between modules and plugins?"
-💬 "Show me step-by-step workflow implementation"
-```
+---
 
 ## 🔧 Available MCP Tools
 
-The MCP server provides **3 powerful tools** to access Medusa.js documentation:
+This MCP server provides **3 core tools**:
 
-### 🔍 **1. `search_docs`** - Smart Documentation Search
-**What it does**: Intelligently searches through 2,105+ documentation sections using fuzzy matching
-**Perfect for**: Finding relevant information when you don't know the exact section name
+### 🔍 **1. `search_docs`** - Fuzzy Documentation Search
+Searches documentation sections using fuzzy matching.
 
 **Parameters:**
-- `query` (string, **required**): Your search query
-- `limit` (number, optional): Maximum results to return (default: 5)
+- `query` (string, **required**): The search query (e.g. `"navigation"`, `"flatlist performance"`, `"reanimated"`)
+- `limit` (number, optional): Maximum results to return (default: `5`)
 
-**✨ Example Usage:**
+**Example Input:**
 ```json
 {
   "name": "search_docs",
   "arguments": {
-    "query": "workflow payment providers",
+    "query": "state management hooks",
     "limit": 3
   }
 }
 ```
-**Returns**: Workflow Engine Module, timeout configurations, and In-Memory workflow setup
 
 ---
 
 ### 📖 **2. `get_section`** - Precise Section Retrieval
-**What it does**: Fetches exact documentation sections by title or path
-**Perfect for**: Getting detailed information about a specific topic you know exists
+Retrieves the full content of a specific documentation section matching the title or path identifier.
 
 **Parameters:**
-- `identifier` (string, **required**): Exact section title or path
+- `identifier` (string, **required**): Section title or path identifier
 
-**✨ Example Usage:**
+**Example Input:**
 ```json
 {
   "name": "get_section",
   "arguments": {
-    "identifier": "Debug Workflows"
+    "identifier": "Performance Optimization"
   }
 }
 ```
-**Returns**: Complete section content with debugging approaches and techniques
 
 ---
 
-### 📋 **3. `list_sections`** - Browse All Available Content
-**What it does**: Lists all 2,105+ available documentation sections
-**Perfect for**: Discovering what documentation is available or browsing by category
+### 📋 **3. `list_sections`** - Browse Documentation Sections
+Lists available sections, optionally filtered by keyword or category.
 
 **Parameters:**
-- `category` (string, optional): Filter sections by specific category
+- `category` (string, optional): Filter sections by specific keyword or path prefix
 
-**✨ Example Usage:**
+**Example Input:**
 ```json
 {
   "name": "list_sections",
   "arguments": {
-    "category": "workflows"
+    "category": "components"
   }
 }
 ```
-**Returns**: Complete list of workflow-related documentation sections
 
 ---
 
-### 🚀 **Real-World Usage Examples**
+## 🎯 Natural Language Prompts for AI
 
-**Scenario 1**: *"How do I set up payments in Medusa?"*
-1. Use `search_docs` with query `"payment setup"`
-2. Get relevant sections about payment modules and providers
-3. Use `get_section` to dive deep into specific payment provider setup
+After configuring the MCP server, you can ask your AI assistant questions naturally:
 
-**Scenario 2**: *"What workflow features are available?"*
-1. Use `list_sections` with category `"workflows"`
-2. Browse available workflow documentation
-3. Use `get_section` to read specific workflow implementation guides
+- 💬 *"Search React Native SME docs for FlatList performance optimization techniques."*
+- 💬 *"Look up best practices for custom hooks in React Native."*
+- 💬 *"Get the documentation section for deep linking and navigation."*
+- 💬 *"List all documentation sections related to state management."*
 
-**Scenario 3**: *"I need help with cart functionality"*
-1. Use `search_docs` with query `"cart module"`
-2. Find cart-related sections and APIs
-3. Access detailed cart implementation examples
-
-## 🚧 Development
-
-### Scripts
-
-```bash
-# Development server with hot reload
-npm run dev
-
-# Watch mode (auto-restart on changes)
-npm run watch
-
-# Build TypeScript
-npm run build
-
-# Start production server
-npm run start
-```
-
-### Testing
-
-Test the MCP server manually:
-```bash
-# Start the server
-node dist/index.js
-
-# In another terminal, send MCP requests
-echo '{"jsonrpc":"2.0","method":"tools/list","id":1}' | node dist/index.js
-```
-
-### Debug Mode
-
-```bash
-# Enable debug logging
-DEBUG=1 node dist/index.js
-
-# Or with environment variables
-LLM_DOCS_PATH="/path/to/docs.txt" DEBUG=1 node dist/index.js
-```
+---
 
 ## 📁 Project Structure
 
 ```
-Medusa.js-Documentation-MCP-Server/
-├── src/
-│   └── index.ts              # Main MCP server implementation
-├── dist/                     # Compiled JavaScript (auto-generated)
+react-native-sme-docs-mcp/
+├── .agents/plugins/          # Agent plugin configuration
 ├── docs/
-│   └── medusa-docs.txt       # Complete Medusa v2 docs (4.7MB, Sep 2025)
-├── config.json               # Server configuration settings
-├── example-docs.txt          # Example documentation format
-├── claude_code_config.json   # Example Claude Code config
-├── package.json              # Node.js dependencies
-├── tsconfig.json            # TypeScript configuration
-├── .gitignore               # Git ignore rules
-├── LICENSE                  # MIT License
-└── README.md                # This file
+│   ├── llms-full.txt         # Complete React Native documentation (3,090+ sections)
+│   └── llms.txt              # Documentation overview
+├── mcp-config-files/         # MCP sample configuration templates
+├── src/
+│   ├── config.ts             # Configuration loader
+│   ├── doc-loader.ts         # Markdown & txt documentation parser
+│   ├── index.ts              # Entrypoint
+│   ├── search.ts             # Fuse.js search engine
+│   ├── server.ts             # MCP server setup & lifecycle
+│   ├── tools.ts              # MCP tool definitions & handlers
+│   └── types.ts              # TypeScript interfaces & types
+├── config.json               # Server configuration defaults
+├── package.json              # Project dependencies & scripts
+├── tsconfig.json             # TypeScript compiler settings
+├── LICENSE                   # License file
+└── README.md                 # Project documentation
 ```
 
-## ⚙️ Configuration
+---
 
-All server settings can be customized in `config.json`:
+## ⚙️ Configuration (`config.json`)
+
+Customize server behavior via `config.json`:
 
 ```json
 {
   "searchDefaults": {
-    "maxResults": 5,           // Default number of search results
-    "threshold": 0.4,          // Search sensitivity (0-1, lower = more strict)
-    "minMatchCharLength": 3    // Minimum characters for search matching
+    "maxResults": 5,
+    "threshold": 0.4,
+    "minMatchCharLength": 3
   },
   "listDefaults": {
-    "maxSections": 50          // Maximum sections shown in list_sections
+    "maxSections": 50
   },
   "server": {
-    "name": "medusa-docs-mcp",
+    "name": "react-native-sme-docs-mcp",
     "version": "1.0.0"
   },
   "documentation": {
-    "previewLength": 500,      // Length of content preview in search results
-    "fallbackPaths": [         // Paths to search for documentation file
-      "docs/medusa-docs.txt",
-      "llms-full.txt",
-      "../llms-full.txt",
-      "../../llms-full.txt",
-      "/home/claude/llms-full.txt"
+    "previewLength": 500,
+    "fallbackPaths": [
+      "docs/llms-full.txt",
+      "docs/llms.txt"
     ]
   }
 }
 ```
 
-### 🔧 **Customize Your Settings**
+---
 
-- **More search results**: Increase `searchDefaults.maxResults`
-- **Stricter search**: Lower `searchDefaults.threshold` (0.2 = very strict, 0.8 = very loose)
-- **Longer previews**: Increase `documentation.previewLength`
-- **More list items**: Increase `listDefaults.maxSections`
+## 🚧 Development
 
-## 🔒 Environment Variables
-
-- `LLM_DOCS_PATH`: Absolute path to your documentation file
-- `DEBUG`: Enable debug logging (set to `1` or `true`)
-
-## 🐛 Troubleshooting
-
-### Server not found
-1. Restart your AI assistant after configuration changes
-2. Check that file paths are absolute, not relative
-3. Verify the `dist/index.js` file exists (run `npm run build`)
-
-### Documentation not loading
-1. Verify `LLM_DOCS_PATH` points to the correct file
-2. Check file permissions (should be readable)
-3. Ensure the file exists and is not empty
-
-### Permission errors
 ```bash
-# Fix file permissions
-chmod 644 /path/to/docs/medusa-docs.txt
-chmod +x /path/to/Medusa.js-Documentation-MCP-Server/dist/index.js
+# Run in development mode
+yarn dev
+
+# Run in watch mode (auto-reload on changes)
+yarn watch
+
+# Build TypeScript to dist/
+yarn build
+
+# Test MCP server manually via stdin
+echo '{"jsonrpc":"2.0","method":"tools/list","id":1}' | node dist/index.js
 ```
-
-### Debug connection issues
-```bash
-# Test MCP server manually
-echo '{"jsonrpc":"2.0","method":"tools/list","id":1}' | LLM_DOCS_PATH="/path/to/docs.txt" node dist/index.js
-```
-
-Check your AI assistant's MCP logs:
-- **Claude Code CLI**: View → Output → MCP logs
-- **Cursor IDE**: Developer Tools → Console
-- **Windsurf**: Check extension logs in developer tools
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Update configuration in `config.json` if needed
-5. Build and test (`npm run build`)
-6. Commit your changes (`git commit -m 'Add amazing feature'`)
-7. Push to the branch (`git push origin feature/amazing-feature`)
-8. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Model Context Protocol](https://modelcontextprotocol.io/) by Anthropic
-- [Medusa.js](https://medusajs.com/) commerce platform
-- [Fuse.js](https://fusejs.io/) for fuzzy search functionality
-
-## 📞 Support
-
-- 🐛 **Issues**: [GitHub Issues](https://github.com/Alexcs24/Medusa.js-Documentation-MCP-Server/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/Alexcs24/Medusa.js-Documentation-MCP-Server/discussions)
-- 📧 **Email**: Contact through GitHub
 
 ---
 
-**⭐ Star this repo if it helps your Medusa development workflow!**
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
