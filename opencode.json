@@ -1,0 +1,54 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "medusa-docs": {
+      "type": "local",
+      "command": ["/mnt/data/userdata/projects/medusa-docs-mcp-server/medusa-docs-mcp-go/medusa-docs-mcp"],
+      "enabled": true,
+      "env": {
+        "LLM_DOCS_PATH": "/mnt/data/userdata/projects/medusa-docs-mcp-server/docs/medusa-llms-full.txt"
+      }
+    }
+  },
+  "agent": {
+    "ask": {
+      "mode": "primary",
+      "description": "Mode ask — analisis & plan tanpa mengubah file. Semua write/edit/bash butuh konfirmasi.",
+      "permission": {
+        "edit": "ask",
+        "bash": "ask",
+        "task": "ask",
+        "webfetch": "ask",
+        "external_directory": "ask"
+      }
+    },
+    "build": {
+      "mode": "primary",
+      "description": "Development dengan akses penuh — default mode",
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "task": "allow",
+        "webfetch": "allow"
+      }
+    }
+  },
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "go build *": "allow",
+      "go vet *": "allow",
+      "npm run *": "allow",
+      "npm test": "allow",
+      "tsc *": "allow",
+      "tsx *": "allow",
+      "ls *": "allow",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow"
+    } 
+  },
+ 
+  "formatter": true,
+  "autoupdate": false
+}

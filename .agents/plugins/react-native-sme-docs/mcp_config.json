@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "react-native-sme-docs": {
+      "command": "node",
+      "args": [
+        "/mnt/data/userdata/projects/react-native-sme-docs/dist/index.js"
+      ],
+      "env": {
+        "LLM_DOCS_PATH": "/mnt/data/userdata/projects/react-native-sme-docs/docs/llms-full.txt"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "medusa-docs": {
+      "command": "/mnt/data/userdata/projects/medusa-docs-mcp-server/medusa-docs-mcp-go/medusa-docs-mcp",
+      "args": [],
+      "env": {
+        "LLM_DOCS_PATH": "/mnt/data/userdata/projects/medusa-docs-mcp-server/docs/medusa-llms-full.txt"
+      }
+    }
+  }
+}
